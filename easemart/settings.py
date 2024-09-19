@@ -161,6 +161,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:7000","http://127.0.0.1:5501","https://easemart.netlify.app","https://easemart-api.onrender.com",
 ]
 
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5501","https://easemart-api.onrender.com","https://easemart.netlify.app",]
 
 CORS_ALLOW_CREDENTIALS = True
 
