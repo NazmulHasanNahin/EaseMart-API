@@ -20,17 +20,15 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [SearchFilter, DjangoFilterBackend]
-    search_fields = ['name']  # Restrict search to product name only
+    search_fields = ['name']  
 
-    filterset_fields = ['category__name']  # Add filtering by category
-    # renderer_classes = [JSONRenderer]  # Ensure only JSON responses
+    filterset_fields = ['category__name']  
 
     def get_queryset(self):
         queryset = super().get_queryset()
         search_query = self.request.query_params.get('search')
         
         if search_query:
-            # Restrict search to name only and not description
             queryset = queryset.filter(name__icontains=search_query)
         
         return queryset
@@ -79,7 +77,7 @@ class AddToCartView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, product_id, *args, **kwargs):
-        quantity = request.data.get('quantity', 1)  # Default to 1 if not provided
+        quantity = request.data.get('quantity', 1) 
         
         user_account = getattr(request.user, 'useraccount', None)
         if not user_account:
@@ -108,25 +106,20 @@ class RemoveFromCartView(generics.DestroyAPIView):
     def delete(self, request, *args, **kwargs):
         cart_item_id = self.kwargs.get('cart_item_id')
         
-        # Ensure the user has an associated UserAccount instance
         user_account = getattr(request.user, 'useraccount', None)
         if not user_account:
             return Response({"error": "User does not have an associated UserAccount"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Try to find the cart item using the user account
         try:
-            cart_item = Cart.objects.get(id=cart_item_id, user=user_account)  # Use user_account instead of request.user
+            cart_item = Cart.objects.get(id=cart_item_id, user=user_account)  
         except Cart.DoesNotExist:
             raise ValidationError("Cart item not found.")
         
-        # Check the quantity of the cart item
         if cart_item.quantity > 1:
-            # Decrease the quantity by 1
             cart_item.quantity -= 1
             cart_item.save()
             return Response({"message": "Item quantity decreased by 1."}, status=status.HTTP_200_OK)
         else:
-            # Remove the cart item if quantity is 1
             cart_item.delete()
             return Response({"message": "Item removed from cart successfully!"}, status=status.HTTP_204_NO_CONTENT)
     

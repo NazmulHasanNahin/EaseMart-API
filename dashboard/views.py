@@ -60,7 +60,6 @@ class CustomerProfileUpdateView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         user = self.request.user
-        # Access account_type from the related UserAccount model
         if not hasattr(user, 'useraccount') or user.useraccount.account_type != 'customer':
             raise PermissionDenied("You must be logged in as a customer to view or update your profile.")
         return user
@@ -72,7 +71,6 @@ class SellerProfileUpdateView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         user = self.request.user
-        # Access account_type from the related UserAccount model
         if not hasattr(user, 'useraccount') or user.useraccount.account_type != 'seller':
             raise PermissionDenied("You must be logged in as a seller to view or update your profile.")
         return user

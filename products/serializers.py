@@ -12,7 +12,6 @@ from products.models import Cart
 class ProductSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(queryset=Category.objects.all(), slug_field='name')
     
-    # Updated to filter based on UserAccount with 'account_type' as 'seller'
     seller = serializers.SlugRelatedField(queryset=UserAccount.objects.filter(account_type='seller'), slug_field='user__username')
     
     image = serializers.ImageField(required=False)
