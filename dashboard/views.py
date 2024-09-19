@@ -9,11 +9,9 @@ class CustomerPurchaseListView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        # Ensure the user has an associated UserAccount instance and is a customer
         if not hasattr(user, 'useraccount') or user.useraccount.account_type != 'customer':
             raise PermissionDenied("You must be logged in as a customer to view this page.")
         
-        # Query purchases associated with the customer
         return Purchase.objects.filter(customer=user.useraccount)
 
 
@@ -23,11 +21,9 @@ class CartView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        # Ensure the user has an associated UserAccount instance and is a customer
         if not hasattr(user, 'useraccount') or user.useraccount.account_type != 'customer':
             raise PermissionDenied("You must be logged in as a customer to view this page.")
         
-        # Query the cart associated with the customer
         return Cart.objects.filter(user=user.useraccount)
 
 
@@ -37,13 +33,12 @@ class SellerProductListView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        # Ensure user is a seller and query using the UserAccount instance
         if not hasattr(user, 'useraccount') or user.useraccount.account_type != 'seller':
             raise PermissionDenied("You must be logged in as a seller to view this page.")
-        return Product.objects.filter(seller=user.useraccount)  # Use user.useraccount
+        return Product.objects.filter(seller=user.useraccount)  
 
     def perform_create(self, serializer):
-        serializer.save(seller=self.request.user.useraccount)  # Save with user.useraccount
+        serializer.save(seller=self.request.user.useraccount)  
 
 
 
@@ -53,10 +48,9 @@ class SellerProductDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        # Ensure user is a seller and query using the UserAccount instance
         if not hasattr(user, 'useraccount') or user.useraccount.account_type != 'seller':
             raise PermissionDenied("You must be a seller to view products.")
-        return Product.objects.filter(seller=user.useraccount)  # Use user.useraccount
+        return Product.objects.filter(seller=user.useraccount)  
 
 
 
