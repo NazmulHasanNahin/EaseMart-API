@@ -16,12 +16,12 @@ SECRET_KEY = 'django-insecure-5)xl$9m@$yrps4ps)#e!mjyew=1$yrlqrkqlrs!edmldpd=f3a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_filters',
 
-    # Your apps
+    # my apps
     'users',  
     'products',
     'categories',
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'allauth.account.middleware.AccountMiddleware',
@@ -80,12 +81,12 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'easemart.wsgi.application'
+WSGI_APPLICATION = 'easemart.wsgi.app'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+STATIC_ROOT= BASE_DIR / "staticfiles"
 
 # settings.py
 REST_FRAMEWORK = {
@@ -107,10 +108,22 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres.tnqdxkldhbwwrunpkzhe',
+        'PASSWORD': 'N@h!n257312',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'PORT': '6543'
     }
 }
 
