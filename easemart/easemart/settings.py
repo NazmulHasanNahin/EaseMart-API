@@ -16,7 +16,13 @@ SECRET_KEY = 'django-insecure-5)xl$9m@$yrps4ps)#e!mjyew=1$yrlqrkqlrs!edmldpd=f3a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app","https://easemart-api.onrender.com","https://easemart.netlify.app",]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    ".vercel.app",
+    "easemart-api.onrender.com",
+    "easemart.netlify.app",
+]
+
 
 # Application definition
 
