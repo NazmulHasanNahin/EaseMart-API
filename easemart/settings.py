@@ -16,7 +16,13 @@ SECRET_KEY = 'django-insecure-5)xl$9m@$yrps4ps)#e!mjyew=1$yrlqrkqlrs!edmldpd=f3a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    ".vercel.app",
+    "easemart-api.onrender.com",
+    "easemart.netlify.app",
+]
+
 
 # Application definition
 
@@ -171,10 +177,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:7000","http://127.0.0.1:5501","https://easemart.netlify.app","https://ease-mart-api.vercel.app",
+    "http://127.0.0.1:7000","http://127.0.0.1:5501","https://easemart.netlify.app","https://ease-mart-api.vercel.app","https://easemart-api.onrender.com",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5501","https://easemart.netlify.app","https://ease-mart-api.vercel.app",]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:5501","https://easemart.netlify.app","https://ease-mart-api.vercel.app","https://easemart-api.onrender.com",]
 
 CORS_ALLOW_CREDENTIALS = True
 
