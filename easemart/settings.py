@@ -131,7 +131,7 @@ DATABASES = {
         'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
         'PORT': '6543',
         'OPTIONS': {
-            'connect_timeout': 20,  # Set a reasonable connection timeout
+            'connect_timeout': 30, 
         }
     }
 }
