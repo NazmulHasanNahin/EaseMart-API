@@ -91,7 +91,7 @@ To set up the EaseMart API on your local machine, follow these commands in seque
 
 ```bash
 # Clone the repository
-git clone https://github.com/username/EaseMart-API.git
+git clone https://github.com/NazmulHasanNahin/EaseMart-API.git
 
 # Navigate to the project directory
 cd EaseMart-API
