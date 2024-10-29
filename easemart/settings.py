@@ -137,6 +137,17 @@ DATABASES = {
 }
 
 
+SSLCOMMERZ = {
+    'store_id': 'easem671e440d71709',
+    'store_pass': 'easem671e440d71709@ssl',
+    'sandbox': True  # Set to False in production
+}
+
+
+
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY", "pk_test_51QEvqcKLfSOq071FTArbOJ470pJalJ0yyJpwSP8xYWj16UjoJSMsedbdsd4XIZRibdjy5r1RGaiiWwJa2fFBoQVm00UGVPWasA")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "sk_test_51QEvqcKLfSOq071FiBukVqKG7OzLu1iwVjW2Nu7m77DoLqFfdQ3rn1mo7rwXs4Wrg07KLEnDSfCIYbDt801TpwWs00FxC6obcU")
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

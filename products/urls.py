@@ -11,5 +11,5 @@ urlpatterns = [
     path('cart/', CartView.as_view(), name='cart-list-create'),
     path('cart/add/<int:product_id>/', AddToCartView.as_view(), name='add-to-cart'),  # Add to cart URL with product_id
     path('cart/remove/<int:cart_item_id>/', RemoveFromCartView.as_view(), name='remove-from-cart'),  # Remove from cart URL with cart_item_id
-    path('purchase/', PurchaseView.as_view(), name='purchase'),
+    path('purchase/', PurchaseView.as_view(), name='purchase'),   
 ]
